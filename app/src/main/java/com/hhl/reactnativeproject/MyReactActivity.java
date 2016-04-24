@@ -33,7 +33,6 @@ public class MyReactActivity extends AppCompatActivity implements DefaultHardwar
 
         mReactRootView.startReactApplication(mReactInstanceManager, "ReactNativeProject", null);
 
-//        setContentView(mReactRootView);
     }
 
     @Override

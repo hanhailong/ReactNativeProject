@@ -10,6 +10,7 @@ class ReactNativeProject extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.hello}>Hello, World</Text>
+        <Text>测试ReactNative</Text>
       </View>
     )
   }
