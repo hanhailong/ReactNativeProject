@@ -4,11 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
-import com.facebook.react.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
-import com.facebook.react.shell.MainReactPackage;
 
 public class MyReactActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
 
@@ -22,14 +20,7 @@ public class MyReactActivity extends AppCompatActivity implements DefaultHardwar
 
         mReactRootView = (ReactRootView) findViewById(R.id.react_root);
 
-        mReactInstanceManager = ReactInstanceManager.builder()
-                .setApplication(getApplication())
-                .setBundleAssetName("index.android.bundle")
-                .setJSMainModuleName("index.android")
-                .addPackage(new MainReactPackage())
-                .setUseDeveloperSupport(BuildConfig.DEBUG)
-                .setInitialLifecycleState(LifecycleState.RESUMED)
-                .build();
+        mReactInstanceManager = MyRNInstanceManager.getInstance();
 
         mReactRootView.startReactApplication(mReactInstanceManager, "ReactNativeProject", null);
 
