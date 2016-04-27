@@ -1,11 +1,12 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
+    publishNonDefault true
+
     defaultConfig {
-        applicationId "com.hhl.reactnativeproject"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -16,9 +17,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug {
-
-        }
     }
 }
 
@@ -26,8 +24,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.0.1'
-//    compile project(":rn")
-
-    debugCompile project(path: ':rn', configuration: 'debug')
-    releaseCompile project(path: ':rn', configuration: 'release')
+    compile 'com.facebook.react:react-native:0.20.1'
 }
