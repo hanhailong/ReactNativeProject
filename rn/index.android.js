@@ -1,9 +1,11 @@
 'use strict';
 
-var MOVIE_LIST = [{title:"《美国队长3》",desc:"绝对给力的漫威动画片",thumbnial:"http://i.imgur.com/UePbdph.jpg"}]
+// var MOVIE_LIST = [{title:"《美国队长3》",desc:"绝对给力的漫威动画片",thumbnial:"http://i.imgur.com/UePbdph.jpg"}]
 var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
 
-var ToastAndroid2 = require('./ToastAndroid');
+var ToastAndroid2 = require('./ToastAndroid').ToastAndroid2;
+var LoginModule = require('./ToastAndroid').LoginModule;
+var CusImageView = require('./CustomImageView');
 
 import React, {
   Text,
@@ -11,6 +13,8 @@ import React, {
   Image,
   ListView,
   TouchableHighlight,
+  TextInput,
+  DeviceEventEmitter,
 } from 'react-native';
 
 class ReactNativeProject extends React.Component {
@@ -22,13 +26,20 @@ class ReactNativeProject extends React.Component {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),      
-      loaded : false
+      loaded : false ,
+      nameInput : "",
+      pwdInput : "",
     };
   }
 
-  // componentDidMount(){
-  //   this.fetchData();
-  // }
+  componentDidMount(){
+    // this.fetchData();
+    DeviceEventEmitter.addListener("Js_Event",(msg) => {
+      // ToastAndroid2.show(msg.toString(),ToastAndroid2.short);
+      // console.log(msg.key);
+      ToastAndroid2.show(msg.key,ToastAndroid2.short);
+    });
+  }
 
   fetchData() {
     fetch(REQUEST_URL).then((response) => response.json()).then((responseData) => {
@@ -37,6 +48,14 @@ class ReactNativeProject extends React.Component {
           loaded: true,        
         });
       }).done();
+  }
+
+  customView() {
+    return(
+        <View style={styles.container}>
+          <CusImageView style={{width:40,height:40}}></CusImageView>
+        </View>
+      );
   }
 
   render() {
@@ -78,12 +97,46 @@ class ReactNativeProject extends React.Component {
             你点我啊
           </Text>
           </TouchableHighlight>
+
+          <TextInput style={{height:40,borderColor:'grey',borderWidth:1}} 
+            onChangeText={(text) => {
+              this.setState({nameInput:text})
+            }}
+            value={this.state.nameInput}
+            placeholder="请输入姓名"
+            autoFocus={true}
+          />
+          <TextInput style={{height:40,borderColor:'grey',borderWidth:1}}
+            onChangeText={(text) => {
+              this.setState({pwdInput:text})
+            }}
+            value={this.state.pwdInput}
+            placeholder="请输入密码"
+            autoFocus={true}
+          />
+          <TouchableHighlight onPress={this.onLoginSystem.bind(this)}
+            style={{marginTop:20}}
+          >
+            <Text style={{color:'green',textAlign:'center'}}>
+              登录系统
+            </Text>
+          </TouchableHighlight>            
         </View>
       );
   }
 
   onPressBtn (){
     ToastAndroid2.show("你好啊",ToastAndroid2.short);
+  }
+
+  onLoginSystem (){
+    var name = this.state.nameInput;
+    var pwd  = this.state.pwdInput;
+    LoginModule.loginSystem(name,pwd,success => {
+      ToastAndroid2.show(success,ToastAndroid2.short);
+    },error => {
+      ToastAndroid2.show(error,ToastAndroid2.short);
+    });
   }
 
   renderingView() {
@@ -129,7 +182,8 @@ var styles = React.StyleSheet.create({
     color: 'red',
     width:100,
     height:50,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    textAlign: 'center'
   },
   listView: {
     paddingTop : 20,

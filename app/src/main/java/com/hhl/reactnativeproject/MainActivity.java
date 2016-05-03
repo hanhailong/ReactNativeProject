@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.hhl.rn.BuildConfig;
-import com.hhl.rn.MyReactActivity;
+import com.hhl.rn.RNTestActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickMe(View v) {
-        Intent intent = new Intent(MainActivity.this, MyReactActivity.class);
+        Intent intent = new Intent(MainActivity.this, RNTestActivity.class);
         startActivity(intent);
         finish();
     }

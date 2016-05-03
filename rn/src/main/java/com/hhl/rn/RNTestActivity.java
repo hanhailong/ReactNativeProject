@@ -1,11 +1,10 @@
 package com.hhl.rn;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 
-import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.bridge.ReactContext;
@@ -14,7 +13,7 @@ import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
-public class MyReactActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
+public class RNTestActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
 
     private ReactRootView mReactRootView;
     private ReactInstanceManager mReactInstanceManager;
@@ -22,14 +21,13 @@ public class MyReactActivity extends AppCompatActivity implements DefaultHardwar
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_react);
+        setContentView(R.layout.activity_rntest);
 
         mReactRootView = (ReactRootView) findViewById(R.id.react_root);
 
         mReactInstanceManager = MyRNInstanceManager.getInstance();
 
         mReactRootView.startReactApplication(mReactInstanceManager, "ReactNativeProject", null);
-        ReactActivity
     }
 
     /**
@@ -54,6 +52,7 @@ public class MyReactActivity extends AppCompatActivity implements DefaultHardwar
         reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                 .emit(name, params);
     }
+
 
     @Override
     public void invokeDefaultOnBackPressed() {
@@ -95,6 +94,5 @@ public class MyReactActivity extends AppCompatActivity implements DefaultHardwar
         }
         return super.onKeyUp(keyCode, event);
     }
-
 
 }

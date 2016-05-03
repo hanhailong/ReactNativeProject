@@ -75,5 +75,9 @@
 	    }
 	}
 	
+# 添加自定义Native Module
+添加自定义的Native Module，因为系统提供了ToastAndroid实现，为了防止FB提供的ToastAndroid冲突，这里改名ToastAndroid2
+
+	
 # TODO 热更新
 

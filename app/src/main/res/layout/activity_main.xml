@@ -17,7 +17,7 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:layout_centerInParent="true"
         android:onClick="clickMe"
         android:text="点击我" />

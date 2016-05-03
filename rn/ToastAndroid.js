@@ -2,4 +2,5 @@
 
 var { NativeModules } = require('react-native');
 
-module.exports = NativeModules.ToastAndroid2;
+module.exports.ToastAndroid2 = NativeModules.ToastAndroid2;
+module.exports.LoginModule = NativeModules.LoginModule;
