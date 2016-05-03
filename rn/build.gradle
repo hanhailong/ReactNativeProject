@@ -24,5 +24,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.facebook.react:react-native:0.20.1'
+    compile('com.facebook.react:react-native:0.20.1') {
+//        exclude group: 'com.nineoldandroids', module: 'library'
+//        exclude(module: 'jackson-core')
+//        exclude(module: 'jsr305')
+//        exclude(module: 'commons-cli')
+    }
 }
