@@ -64,7 +64,7 @@ public class RNTestActivity extends AppCompatActivity implements DefaultHardware
         super.onPause();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onPause();
+            mReactInstanceManager.onHostPause();
         }
     }
 
@@ -73,7 +73,7 @@ public class RNTestActivity extends AppCompatActivity implements DefaultHardware
         super.onResume();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onResume(this, this);
+            mReactInstanceManager.onHostResume(this, this);
         }
     }
 

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 
-import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.bridge.ReactContext;
@@ -29,7 +28,6 @@ public class MyReactActivity extends AppCompatActivity implements DefaultHardwar
         mReactInstanceManager = MyRNInstanceManager.getInstance();
 
         mReactRootView.startReactApplication(mReactInstanceManager, "ReactNativeProject", null);
-        ReactActivity
     }
 
     /**
@@ -65,7 +63,7 @@ public class MyReactActivity extends AppCompatActivity implements DefaultHardwar
         super.onPause();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onPause();
+            mReactInstanceManager.onHostPause();
         }
     }
 
@@ -74,7 +72,7 @@ public class MyReactActivity extends AppCompatActivity implements DefaultHardwar
         super.onResume();
 
         if (mReactInstanceManager != null) {
-            mReactInstanceManager.onResume(this, this);
+            mReactInstanceManager.onHostResume(this, this);
         }
     }
 

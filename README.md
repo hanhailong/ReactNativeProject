@@ -78,6 +78,69 @@
 # 添加自定义Native Module
 添加自定义的Native Module，因为系统提供了ToastAndroid实现，为了防止FB提供的ToastAndroid冲突，这里改名ToastAndroid2
 
+---
+---
+
+# 2016-5-4 添加了CustomImageViewManager
+在定义的Native UI控件中，声明了两个方法，一个是imageToast方法，测试用的，一个是source方法，用来设置网络图片uri地址的，js中使用代码如下：
+
+先导入：
+
+	var CusImageView = require('./CustomImageView');
+
+使用：
+
+	customView() {
+	    return(
+	        <View style={styles.container}>
+	          <CusImageView style={{width:200,height:200,backgroundColor:'red'}}
+	            imageToast="呵呵呵"
+	            source={{uri:'http://f.hiphotos.bdimg.com/imgad/pic/item/77c6a7efce1b9d1608043b8cf6deb48f8d546418.jpg'}}
+	          />
+	        </View>
+	      );
+	  }	
+
+Java代码请看具体代码
+
+效果图如下：
+![](https://github.com/hanhailong/AndroidStudyResources/blob/master/screenshot/rn/rn_native_customimageview.png?raw=true)
+
+# Gradle依赖改成本地源码编译依赖
+
+在rn中注释掉，改成依赖ReactAndroid
+
+
+	compile project(':ReactAndroid')
+	//    compile('com.facebook.react:react-native:0.20.1') {
+	//        exclude group: 'com.nineoldandroids', module: 'library'
+	//        exclude(module: 'jackson-core')
+	//        exclude(module: 'jsr305')
+	//        exclude(module: 'commons-cli')
+	//    }
 	
+	
+项目根目录的*build.gradle*中添加*gradle-download-task*
+
+	buildscript {
+	    repositories {
+	        jcenter()
+	    }
+	    dependencies {
+	        classpath 'com.android.tools.build:gradle:2.1.0'
+	        classpath 'de.undercouch:gradle-download-task:3.0.0'
+	        // NOTE: Do not place your application dependencies here; they belong
+	        // in the individual module build.gradle files
+	    }
+	}
+
+别忘了改*settings.gradle*，因为我们直接用的node_modules中的，所以改成：
+
+	include ':ReactAndroid'
+	project(':ReactAndroid').projectDir = new File(
+	        rootProject.projectDir, 'rn/node_modules/react-native/ReactAndroid')
+	        
+具体看代码吧，已上传GitHub
+
 # TODO 热更新
 

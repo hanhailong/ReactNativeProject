@@ -13,6 +13,11 @@ var iface = {
 	name:"CusImageView",
 	propTypes:{
 		imageToast:PropTypes.string,
+		source:PropTypes.oneOfType([
+			PropTypes.shape({
+				uri:PropTypes.string,
+			}),
+			]),
 		...View.propTypes,
 	}
 }

@@ -37,7 +37,7 @@ class ReactNativeProject extends React.Component {
     DeviceEventEmitter.addListener("Js_Event",(msg) => {
       // ToastAndroid2.show(msg.toString(),ToastAndroid2.short);
       // console.log(msg.key);
-      ToastAndroid2.show(msg.key,ToastAndroid2.short);
+      ToastAndroid2.show(msg.key+"呵呵呵",ToastAndroid2.short);
     });
   }
 
@@ -53,13 +53,17 @@ class ReactNativeProject extends React.Component {
   customView() {
     return(
         <View style={styles.container}>
-          <CusImageView style={{width:40,height:40}}></CusImageView>
+          <CusImageView style={{width:200,height:200,backgroundColor:'red'}}
+            imageToast="呵呵呵"
+            source={{uri:'http://f.hiphotos.bdimg.com/imgad/pic/item/77c6a7efce1b9d1608043b8cf6deb48f8d546418.jpg'}}
+          />
         </View>
       );
   }
 
   render() {
-    return this.onPressView();
+   return this.customView();
+     // return this.onPressView();
     // if (!this.state.loaded) {
     //   return this.renderingView();
     // }
