@@ -45,4 +45,7 @@ dependencies {
 
     debugCompile project(path: ':rn', configuration: 'debug')
     releaseCompile project(path: ':rn', configuration: 'release')
+
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
+
 }

@@ -7,7 +7,11 @@ var ToastAndroid2 = require('./ToastAndroid').ToastAndroid2;
 var LoginModule = require('./ToastAndroid').LoginModule;
 var CusImageView = require('./CustomImageView');
 
-import React, {
+import React, { Component } from 'react';
+
+import {
+  AppRegistry,
+  StyleSheet,
   Text,
   View,
   Image,
@@ -164,7 +168,7 @@ class ReactNativeProject extends React.Component {
       );
   }
 }
-var styles = React.StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -194,5 +198,4 @@ var styles = React.StyleSheet.create({
     backgroundColor : '#F5FCFF'
   }
 });
-
-React.AppRegistry.registerComponent('ReactNativeProject', () => ReactNativeProject);
+AppRegistry.registerComponent('ReactNativeProject', () => ReactNativeProject);

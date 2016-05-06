@@ -5,7 +5,7 @@ import {
 } from 'react';
 
 import {
-	requireNativeComponent,
+		requireNativeComponent,
 	View
 } from 'react-native';
 
